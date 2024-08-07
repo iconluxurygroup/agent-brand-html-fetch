@@ -15,13 +15,12 @@ import csv
 from bs4 import BeautifulSoup
 from fastapi import FastAPI, BackgroundTasks
 import uvicorn
-import ray
 # from dotenv import load_dotenv
 from fastapi import FastAPI
 
 # load_dotenv()
 app = FastAPI()
-@ray.remote
+
 class PageExpander:
 
     def __init__(self,job_id, brand_id,url):
@@ -616,8 +615,10 @@ def read_file_to_list(file_path):
 
 
 def process_remote_run(job_id,brand_id, scan_url):
-    expander = PageExpander.remote(job_id, brand_id,scan_url)
-    result = ray.get(expander.start.remote())
+    # expander = PageExpander.remote(job_id, brand_id,scan_url)
+    # result = ray.get(expander.start.remote())
+    expander = PageExpander(job_id, brand_id,scan_url)
+    expander.start()
 
 @app.post("/run_html")
 async def brand_batch_endpoint(job_id:str, brand_id: str, scan_url:str, background_tasks: BackgroundTasks):
@@ -630,4 +631,4 @@ async def check():
     return {"message": "Alive"}
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8080, log_level="info")
+    uvicorn.run("main:app", port=8080, log_level="info",host='0.0.0.0')
