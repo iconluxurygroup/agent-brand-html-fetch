@@ -28,15 +28,16 @@ class PageExpander:
         self.log_url=None
         self.product_count=0
         options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
         options.add_argument("--auto-open-devtools-for-tabs")
         options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
         options.add_argument("--start-maximized")
-        options.add_argument('--no-sandbox')
         options.add_argument('--disable-setuid-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--headless=new")
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-gpu")
+        
         time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         current_directory=os.getcwd()
         self.output_dir = os.getcwd()
