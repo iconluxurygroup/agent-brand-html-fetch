@@ -1,0 +1,8 @@
+boto3
+selenium
+requests
+beautifulsoup4
+fastapi
+uvicorn
+ray
+python-dotenv
