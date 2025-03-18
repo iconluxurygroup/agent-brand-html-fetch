@@ -4,3 +4,5 @@ requests
 beautifulsoup4
 fastapi
 uvicorn
+ray
+sendgrid
