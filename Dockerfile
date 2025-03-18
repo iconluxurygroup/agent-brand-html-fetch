@@ -39,7 +39,10 @@ RUN chmod 755 /usr/bin/chromedriver
 RUN chromedriver --version
 
 COPY main.py .
-
+ENV SETTINGS_URL="https://raw.githubusercontent.com/iconluxurygroup/current-test-settings-HTML_Gather/refs/heads/main/settings.json"
+ENV REGION='us-east-2'
+ENV AWS_ACCESS_KEY_ID='AKIAZQ3DSIQ5BGLY355N'
+ENV AWS_SECRET_ACCESS_KEY='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'
 
 EXPOSE 8080
 CMD ["python", "main.py"]
